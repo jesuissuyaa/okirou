@@ -310,17 +310,21 @@ function mediaSetup(room, user) {
 	})
 }
 
+/*** after 2019/03/04 ***/
 function moveUserOnAdd(uid) {
+	// console.log('moveUserOnAdd');
+
 	roomRef.once('value').then(function(snapshot) {
 		var mCount = snapshot.numChildren();
+		// console.log('# of people: ' + mCount);
 
-		if (mCount >= (MAX_USERS + MIN_USERS)) { // over capacitated
+		if (mCount >= (MAX_USERS + MIN_USERS)) { // over capacitated			
 			// DB: cancel disconnection
 			onBreakRef.child(uid).onDisconnect().cancel();
 
 			snapshot.forEach(function(childSnapshot) {
-				if ((childSnapshot.child('peer-id') == peerId) && (childSnapshot.child('temp').exists())) { // snapshot for peer
-					//console.log('RELOCATE');
+				if ((childSnapshot.child('peer-id').val() == peerId) && (childSnapshot.child('temp').exists())) { // snapshot for peer
+					console.log('RELOCATE');
 					looper(1);
 
 					function looper(roomIndex) {
@@ -347,7 +351,6 @@ function moveUserOnAdd(uid) {
 		}
 	})
 }
-
 
 function moveUserOnRemove(uid) {
 	roomRef.once('value').then(function(snapshot) { // read initial state of data

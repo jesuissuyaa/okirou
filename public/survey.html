@@ -28,6 +28,53 @@
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
     <link rel="stylesheet" href="styles/common.css">
     <style type="text/css">
+        /** [START] SIDENAV **/
+        .sidenav {
+            background-color: #f4f5f7;
+            display: inline-block;
+            left: 8px;
+            position: fixed;
+            margin: 0;
+            top: 7rem;
+            width: auto;
+        }
+
+        .sidenav a {
+            display: block;
+            margin: 1rem 2rem;
+        }
+
+        .sidenav ul {
+            margin: 0 0 1rem 3rem;
+        }
+
+        .sidenav ul a {
+            display: inline;
+            margin: 0;
+        }
+
+        .content-sidenav {
+            display: inline-block;
+            margin-left: 25rem;
+            width: auto;
+        }
+        /** [END] SIDENAV **/
+
+        .asterisk {
+            color: red;
+            font-weight: 700;
+        }
+
+        .content-sidenav textarea {
+            font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+            height: 10rem;  
+            width: 40rem;
+        }
+
+        .content-sidenav input[type="radio"] {
+            margin-bottom: 1.5rem;
+        }
+    
         #system span { font-size: 1.6rem; font-weight: 300; }
         @media (max-width: 600px) {
             h3 { font-size: 2rem; font-weight: 300; }

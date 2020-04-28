@@ -131,6 +131,64 @@ $('#survey').click(() => {
 		hideLoading();
 		downloadCSV(csv, 'survey');
 	})
+});
+
+$('#exp-users').click(() => {
+	const ref = firebase.database().ref('exp-survey');
+	var csv = '';
+
+	ref.once('value').then((snapshot) => {
+		snapshot.forEach((childss) => {
+			csv += childss.child('uid').val() + lineDelimiter;
+		});
+	}).then(() => {
+		downloadCSV(csv, 'exp-users');
+	})
+});
+
+$('#exp-survey').click(() => {
+	const ref = firebase.database().ref('exp-survey');
+	var csv = '';
+
+	const keys = [
+		'uid',
+	 	'timestamp',
+	 	'q1-1', 'q1-2', 'q1-3', 'q1-4', 'q1-5', 'q1-6', 'q1-7',
+	 	'q2-1-1', 'q2-1-2', 'q2-1-3', 'q2-1-4', 'q2-1-5', 'q2-1-6', 'q2-1-7', 'q2-1-8',
+	 	'q2-2-1', 'q2-2-2', 'q2-2-3', 'q2-2-4', 'q2-2-5', 'q2-2-6',
+	 	'q2-3-1', 'q2-3-2', 'q2-3-3', 'q2-3-4', 'q2-3-5',
+	 	'q3-1', 'q3-2',
+	 	'q4-1', 'q4-2', 'q4-3', 'q4-4-1', 'q4-4-2', 'q4-4-3', 'q4-4-4', 'q4-4-5' 
+	 	];
+	var csv = '';
+
+	// append keys
+	csv += keys.join(columnDelimiter);
+	csv += lineDelimiter;
+
+	ref.once('value').then((snapshot) => {
+		snapshot.forEach((childSnapshot) => {
+			for (var i = 0; i < keys.length; i++) {
+				var key = keys[i];
+				var val = childSnapshot.child(key).val();
+				if ((typeof val) == 'string') {
+					// escape double quotes
+					val = val.replace(/"/g, '""');
+					// wrap with double quotes -> preserve commas & newline
+					val = '\"' + val + '\"';
+				}
+				csv += val;
+				if (i != (keys.length - 1)) {
+					// append comma
+					csv += columnDelimiter;
+				} else {
+					csv += lineDelimiter;
+				}
+			}
+		})
+	}).then(() => {
+		downloadCSV(csv, 'exp-survey');
+	})
 })
 
 function downloadCSV(csv, kind) {

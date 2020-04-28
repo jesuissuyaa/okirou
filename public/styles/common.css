@@ -416,29 +416,6 @@ span {
 	float: right
 }
 
-/** [START] SIDENAV **/
-.sidenav {
-	background-color: #f4f5f7;
-	display: inline-block;
-	left: 8px;
-	position: fixed;
-	margin: 0;
-	top: 7rem;
-	width: auto;
-}
-
-.sidenav a {
-	display: block;
-	margin: 1rem 2rem;
-}
-
-.content-sidenav {
-	display: inline-block;
-	margin-left: 25rem;
-	width: auto;
-}
-/** [END] SIDENAV **/
-
 /** [START] FOOTER **/
 html, body {
   	height: calc(100% - 8px);
@@ -734,23 +711,6 @@ body {
 	}
 }
 /** [END STUDY-ROOMS] **/
-
-/** [START SURVEY] **/
-.asterisk {
-	color: red;
-	font-weight: 700;
-}
-
-.content-sidenav textarea {
-	font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
-	height: 10rem;	
-	width: 40rem;
-}
-
-.content-sidenav input[type="radio"] {
-	margin-bottom: 1.5rem;
-}
-/** [END SURVEY] **/
 
 /** [START TERMS] **/
 .ol-terms {
